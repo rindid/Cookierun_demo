@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public bool isSlideKeyDown = false;
     bool isHurtMotionPlayed = true;
 
+    private float oneSecondTimer = 0;
+
     public enum PlayerState
     {
         Idle,
@@ -95,6 +97,12 @@ public class PlayerController : MonoBehaviour
         {
                 //Debug.Log("Idle1");
                 SetState(PlayerState.Idle);
+        }
+        oneSecondTimer += Time.deltaTime;
+        if(oneSecondTimer >= 1.0f)
+        {
+            GameManager.Instance.UpdateUI();
+            oneSecondTimer = 0;
         }
         
     }

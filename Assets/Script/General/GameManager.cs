@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private JellyManager gameJellyManager = null;
     private float gameTimer = 0;
     private float abilityTimer = 0;
+    private float oneSecondTimer = 0;
     private int jellySpawnCount = 0;
     private float nextReduceHealth = 0;
     private int gameScore = 0;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         gameTimer = 0;
         abilityTimer = 0;
+        oneSecondTimer = 0;
         gameScore = 0;
         jellySpawnCount = 0;
         nextReduceHealth = 0;
@@ -78,7 +80,13 @@ public class GameManager : MonoBehaviour
                 }
                 nextReduceHealth=0;
             }
-            UpdateUI();
+            oneSecondTimer += Time.deltaTime;
+            if(oneSecondTimer >= 1.0f)
+            {
+                UpdateUI();
+                oneSecondTimer = 0;
+            }
+            
         }
     }
 
@@ -129,7 +137,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public static void UpdateUI()
+    public void UpdateUI()
     {
         if (instance != null && instance.GameUIManager != null)
         {

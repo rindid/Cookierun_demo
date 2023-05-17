@@ -29,7 +29,7 @@ public class JellyManager : MonoBehaviour
 
     void ReadFile(string filePath)
     {
-        Debug.Log(Application.dataPath + filePath);
+        //Debug.Log(Application.dataPath + filePath);
         mapData.Clear();
         sr = new StreamReader(Application.dataPath + filePath);
         while(!sr.EndOfStream)
